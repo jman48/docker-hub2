@@ -4,7 +4,7 @@ import { Platform, MenuController, Nav } from 'ionic-angular';
 
 import { StatusBar, Splashscreen } from 'ionic-native';
 
-import { HelloIonicPage } from '../pages/hello-ionic/hello-ionic';
+import { HelloIonicPage } from '../pages/search/search';
 import { ListPage } from '../pages/list/list';
 
 
