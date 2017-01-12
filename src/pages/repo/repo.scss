@@ -1,3 +1,29 @@
 page-item-details {
+  .content {
+    padding: 10px;
+    padding-bottom: 60px;
+  }
 
+  h1 {
+    color: #147698;
+  }
+
+  code {
+    color: black;
+    background-color: #f8f8f8;
+  }
+
+  p {
+    color: #555;
+  }
+
+  a {
+    text-decoration: none;
+    color: #22b8eb;
+  }
+
+  .language-console {
+    display: inline-block;
+    padding: 10px 0;
+  }
 }

@@ -1,17 +1,30 @@
 import { Component } from '@angular/core';
 
-import { NavController, NavParams } from 'ionic-angular';
+import { NavParams } from 'ionic-angular';
+import { DockerService } from "../../services/docker.service";
 
 
 @Component({
   selector: 'page-item-details',
   templateUrl: 'repo.html'
 })
-export class ItemDetailsPage {
-  selectedItem: any;
+export class RepoPage {
+  name: string;
+  offical: string;
+  repo: any;
+  description: string;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
-    // If we navigated to this page, we will have an item available as a nav param
-    this.selectedItem = navParams.get('item');
+  constructor(public navParams: NavParams, public dockerService: DockerService) {
+    this.name = navParams.get('name');
+    this.offical = navParams.get('offical');
+  }
+
+  ngOnInit() {
+    this.dockerService.loadRepo(this.name, this.offical)
+      .then((repo) => {
+      console.log(repo);
+        this.repo = repo;
+        this.description = this.repo.full_description;
+      });
   }
 }
