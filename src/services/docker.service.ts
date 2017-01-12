@@ -23,4 +23,25 @@ export class DockerService {
       .toPromise()
       .then((response)=> response.json());
   }
+
+  /**
+   * Load a single docker hub repo
+   *
+   * @param name - Name of the repository
+   * @param official - Whether it is an offical repo or not
+   * @returns {Promise<T>} - Returns a promise that resolves with the pages html (due to docker hubs api)
+   */
+  loadRepo(name, official) {
+    let repoUrl = `${this.host}repositories/`;
+
+    if (official !== 'false') {
+      repoUrl += 'library/';
+    }
+
+    repoUrl += `${name}/`;
+
+    return this.http.get(repoUrl)
+      .toPromise()
+      .then((response) => response.json());
+  }
 }
