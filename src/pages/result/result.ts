@@ -1,39 +1,26 @@
 import { Component } from '@angular/core';
 
-import { NavController, NavParams } from 'ionic-angular';
-
-import { ItemDetailsPage } from '../item-details/item-details';
+import { NavParams } from 'ionic-angular';
+import { DockerService } from "../../services/docker.service";
 
 
 @Component({
   selector: 'page-list',
   templateUrl: 'result.html'
 })
-export class ListPage {
-  selectedItem: any;
-  icons: string[];
-  items: Array<{title: string, note: string, icon: string}>;
+export class ResultPage {
+  searchTerm: string;
+  page: number;
+  items: Array<any>;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
-    // If we navigated to this page, we will have an item available as a nav param
-    this.selectedItem = navParams.get('item');
 
-    this.icons = ['flask', 'wifi', 'beer', 'football', 'basketball', 'paper-plane',
-    'american-football', 'boat', 'bluetooth', 'build'];
-
-    this.items = [];
-    for(let i = 1; i < 11; i++) {
-      this.items.push({
-        title: 'Item ' + i,
-        note: 'This is item #' + i,
-        icon: this.icons[Math.floor(Math.random() * this.icons.length)]
-      });
-    }
+  constructor(public navParams: NavParams, private dockerService: DockerService) {
+    this.searchTerm = navParams.get('searchTerm');
+    this.page = navParams.get('page');
   }
 
-  itemTapped(event, item) {
-    this.navCtrl.push(ItemDetailsPage, {
-      item: item
-    });
+  ngOnInit() {
+    this.dockerService.search(this.searchTerm, this.page)
+      .then(searchResult => this.items = searchResult.results);
   }
 }
