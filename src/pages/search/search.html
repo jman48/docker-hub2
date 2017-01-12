@@ -12,7 +12,12 @@
 
   <div class="search">
     <ion-item>
-      <ion-input type="text" placeholder="Image name" [(ngModel)]="searchTerm"></ion-input>
+      <ion-input type="text"
+                 placeholder="Image name"
+                 [(ngModel)]="searchTerm"
+                 (keypress)="searchOnEnter($event.keyCode)">
+      </ion-input>
+
     </ion-item>
     <button ion-button block (click)="search()">Search</button>
   </div>

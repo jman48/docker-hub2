@@ -18,4 +18,15 @@ export class SearchPage {
       searchTerm: this.searchTerm
     });
   }
+
+  /**
+   * Kick of a search when user hits the enter key
+   * @param keyCode
+   */
+  searchOnEnter(keyCode): void {
+    //13 is key code for the enter key
+    if(keyCode === 13) {
+      this.search();
+    }
+  }
 }
