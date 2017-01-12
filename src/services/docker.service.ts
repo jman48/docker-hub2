@@ -16,7 +16,7 @@ export class DockerService {
    * @param page - Optional page number
    * @returns {Promise<T>}
    */
-  search(searchTerm, page = 1): Promise<Object[]> {
+  search(searchTerm, page = 1): Promise<any> {
     let searchUrl = `${this.host}search/repositories/?page=${page}&query=${searchTerm}`;
 
     return this.http.get(searchUrl)

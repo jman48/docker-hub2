@@ -1,9 +1,9 @@
 import { NgModule, ErrorHandler } from '@angular/core';
 import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
 import { MyApp } from './app.component';
-import { HelloIonicPage } from '../pages/search/search';
+import { SearchPage } from '../pages/search/search';
 import { ItemDetailsPage } from '../pages/item-details/item-details';
-import { ListPage } from '../pages/result/result';
+import { ResultPage } from '../pages/result/result';
 
 import {DockerService} from '../services/docker.service';
 import { HttpModule } from '@angular/http';
@@ -11,9 +11,9 @@ import { HttpModule } from '@angular/http';
 @NgModule({
   declarations: [
     MyApp,
-    HelloIonicPage,
+    SearchPage,
     ItemDetailsPage,
-    ListPage
+    ResultPage
   ],
   imports: [
     HttpModule,
@@ -22,9 +22,9 @@ import { HttpModule } from '@angular/http';
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
-    HelloIonicPage,
+    SearchPage,
     ItemDetailsPage,
-    ListPage
+    ResultPage
   ],
   providers: [{provide: ErrorHandler, useClass: IonicErrorHandler}, DockerService]
 })

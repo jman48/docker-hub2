@@ -12,9 +12,9 @@
 
   <div class="search">
     <ion-item>
-      <ion-input type="text" placeholder="Image name"></ion-input>
+      <ion-input type="text" placeholder="Image name" [(ngModel)]="searchTerm"></ion-input>
     </ion-item>
-    <button ion-button block>Search</button>
+    <button ion-button block (click)="search()">Search</button>
   </div>
 
   <div class="recent">
