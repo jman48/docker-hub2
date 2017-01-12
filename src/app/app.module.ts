@@ -2,7 +2,7 @@ import { NgModule, ErrorHandler } from '@angular/core';
 import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
 import { MyApp } from './app.component';
 import { SearchPage } from '../pages/search/search';
-import { ItemDetailsPage } from '../pages/item-details/item-details';
+import { ItemDetailsPage } from '../pages/repo/repo';
 import { ResultPage } from '../pages/results/results';
 import { Result } from '../components/result/result';
 import { HumanFormat } from '../pipes/humanFormat.pipe';
