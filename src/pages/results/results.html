@@ -13,9 +13,7 @@
       Search results for "{{searchTerm}}"
     </ion-list-header>
 
-    <ion-item *ngFor="let item of items">
-      <ion-label>{{item.repo_name}}</ion-label>
-    </ion-item>
+    <result [item]="item" *ngFor="let item of items"></result>
   </ion-list>
 
   <div class="navigation">

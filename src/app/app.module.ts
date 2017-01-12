@@ -4,6 +4,7 @@ import { MyApp } from './app.component';
 import { SearchPage } from '../pages/search/search';
 import { ItemDetailsPage } from '../pages/item-details/item-details';
 import { ResultPage } from '../pages/results/results';
+import { Result } from '../components/result/result';
 
 import {DockerService} from '../services/docker.service';
 import { HttpModule } from '@angular/http';
@@ -13,7 +14,8 @@ import { HttpModule } from '@angular/http';
     MyApp,
     SearchPage,
     ItemDetailsPage,
-    ResultPage
+    ResultPage,
+    Result
   ],
   imports: [
     HttpModule,
