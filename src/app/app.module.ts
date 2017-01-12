@@ -7,7 +7,8 @@ import { ResultPage } from '../pages/results/results';
 import { Result } from '../components/result/result';
 import { HumanFormat } from '../pipes/humanFormat.pipe';
 
-import {DockerService} from '../services/docker.service';
+import { DockerService } from '../services/docker.service';
+import { LoadingService } from '../services/loading.service';
 import { HttpModule } from '@angular/http';
 
 @NgModule({
@@ -30,6 +31,11 @@ import { HttpModule } from '@angular/http';
     ItemDetailsPage,
     ResultPage
   ],
-  providers: [{provide: ErrorHandler, useClass: IonicErrorHandler}, DockerService]
+  providers: [
+    {provide: ErrorHandler, useClass: IonicErrorHandler},
+    DockerService,
+    LoadingService
+  ]
 })
-export class AppModule {}
+export class AppModule {
+}
