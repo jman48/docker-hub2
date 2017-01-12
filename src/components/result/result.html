@@ -4,7 +4,13 @@
     <div>{{item.short_description}}</div>
   </div>
   <div class="info">
-    <div>{{item.pull_count | humanformat}}</div>
-    <div>{{item.star_count | humanformat}}</div>
+    <div>
+      {{item.pull_count | humanformat:1}}
+      <ion-icon name="download"></ion-icon>
+    </div>
+    <div class="star">
+      {{item.star_count | humanformat:1}}
+      <ion-icon name="star"></ion-icon>
+    </div>
   </div>
 </ion-item>

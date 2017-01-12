@@ -16,5 +16,13 @@ result {
 
   .info {
     float: right;
+
+    ion-icon {
+      padding-left: 2px;
+    }
+
+    .star {
+      float: right;
+    }
   }
 }
