@@ -15,12 +15,14 @@ export class LoadingService {
   startLoading() {
     if (!this.loading) {
       this.loadingCtrl.present();
+      this.loading = true;
     }
   }
 
   stopLoading() {
     if (this.loading) {
       this.loadingCtrl.dismiss();
+      this.loading = false;
     }
   }
 }

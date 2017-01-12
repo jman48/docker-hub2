@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
 
-import {NavParams, NavController, LoadingController} from 'ionic-angular';
+import { NavParams, NavController } from 'ionic-angular';
 import { DockerService } from "../../services/docker.service";
+import { LoadingService } from "../../services/loading.service";
 
 
 @Component({
@@ -13,17 +14,13 @@ export class ResultPage {
   searchTerm: string;
   page: number;
   items: Array<any>;
-  loading: any;
 
 
-  constructor(private navCtrl: NavController, public navParams: NavParams, private dockerService: DockerService, public loadingCtrl: LoadingController) {
+  constructor(private navCtrl: NavController, public navParams: NavParams, private dockerService: DockerService, public loadingCtrl: LoadingService) {
     this.searchTerm = navParams.get('searchTerm');
     this.page = navParams.get('page');
-    this.loading = this.loadingCtrl.create({
-      content: 'Loading...'
-    });
 
-    this.loading.present();
+    this.loadingCtrl.startLoading();
   }
 
   /**
@@ -34,9 +31,9 @@ export class ResultPage {
       .then(searchResult => {
         this.result = searchResult;
         this.items = searchResult.results;
-        this.loading.dismiss();
+        this.loadingCtrl.stopLoading();
       })
-      .catch(() => this.loading.dismiss());
+      .catch(() => this.loadingCtrl.stopLoading());
   }
 
   /**
@@ -56,7 +53,7 @@ export class ResultPage {
   /**
    * Navigate back to the previous page
    */
-  prevPage() : void {
+  prevPage(): void {
     if (this.result.previous) {
       this.navCtrl.pop({
         animate: false
