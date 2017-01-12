@@ -1,0 +1,16 @@
+result {
+  .description {
+    float: left;
+    width: calc(100% - 70px);
+
+    div {
+      width: 100%;
+      text-overflow: ellipsis;
+      overflow: hidden;
+    }
+  }
+
+  .info {
+    float: right;
+  }
+}

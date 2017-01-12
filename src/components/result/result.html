@@ -1,3 +1,10 @@
-<ion-item>
-  <ion-label>{{item.repo_name}}</ion-label>
+<ion-item class="result">
+  <div class="description">
+    <div>{{item.repo_name}}</div>
+    <div>{{item.short_description}}</div>
+  </div>
+  <div class="info">
+    <div>{{item.pull_count | humanformat}}</div>
+    <div>{{item.star_count | humanformat}}</div>
+  </div>
 </ion-item>
