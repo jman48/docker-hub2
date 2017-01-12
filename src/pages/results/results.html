@@ -13,7 +13,7 @@
       Search results for "{{searchTerm}}"
     </ion-list-header>
 
-    <result [item]="item" *ngFor="let item of items"></result>
+    <result [item]="item" *ngFor="let item of items" (click)="loadRepo(item)"></result>
   </ion-list>
 
   <div class="navigation">

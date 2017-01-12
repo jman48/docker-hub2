@@ -4,6 +4,8 @@ import { NavParams, NavController } from 'ionic-angular';
 import { DockerService } from "../../services/docker.service";
 import { LoadingService } from "../../services/loading.service";
 
+import { RepoPage } from '../repo/repo';
+
 
 @Component({
   selector: 'page-list',
@@ -59,5 +61,12 @@ export class ResultPage {
         animate: false
       });
     }
+  }
+
+  loadRepo(repo): void {
+    this.navCtrl.push(RepoPage, {
+      name: repo.repo_name,
+      offical: repo.is_official
+    })
   }
 }
