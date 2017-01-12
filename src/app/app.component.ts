@@ -5,7 +5,7 @@ import { Platform, MenuController, Nav } from 'ionic-angular';
 import { StatusBar, Splashscreen } from 'ionic-native';
 
 import { HelloIonicPage } from '../pages/search/search';
-import { ListPage } from '../pages/list/list';
+import { ListPage } from '../pages/result/result';
 
 
 @Component({
