@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 
-import { NavParams } from 'ionic-angular';
+import {NavParams, NavController} from 'ionic-angular';
 import { DockerService } from "../../services/docker.service";
 
 
@@ -9,18 +9,50 @@ import { DockerService } from "../../services/docker.service";
   templateUrl: 'result.html'
 })
 export class ResultPage {
+  result: any;
   searchTerm: string;
   page: number;
   items: Array<any>;
 
 
-  constructor(public navParams: NavParams, private dockerService: DockerService) {
+  constructor(private navCtrl: NavController, public navParams: NavParams, private dockerService: DockerService) {
     this.searchTerm = navParams.get('searchTerm');
     this.page = navParams.get('page');
   }
 
+  /**
+   * Get all search results when we get initialised
+   */
   ngOnInit() {
     this.dockerService.search(this.searchTerm, this.page)
-      .then(searchResult => this.items = searchResult.results);
+      .then(searchResult => {
+        this.result = searchResult;
+        this.items = searchResult.results;
+      });
+  }
+
+  /**
+   * Navigate to the next page
+   */
+  nextPage(): void {
+    if (this.result.next) {
+      this.navCtrl.push(ResultPage, {
+        searchTerm: this.searchTerm,
+        page: (++this.page)
+      }, {
+        animate: false
+      });
+    }
+  }
+
+  /**
+   * Navigate back to the previous page
+   */
+  prevPage() : void {
+    if (this.result.previous) {
+      this.navCtrl.pop({
+        animate: false
+      });
+    }
   }
 }
