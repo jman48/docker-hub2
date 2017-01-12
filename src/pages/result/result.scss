@@ -1,3 +1,19 @@
 page-list {
+  .navigation {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    padding: 5px;
 
+    .next {
+      float: right;
+    }
+
+    .disabled {
+      opacity: 0.65;
+      cursor: not-allowed;
+      color: grey;
+      border-color: grey;
+    }
+  }
 }

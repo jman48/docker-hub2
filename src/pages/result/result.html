@@ -13,4 +13,19 @@
       {{item.repo_name}}
     </div>
   </ion-list>
+
+  <div class="navigation">
+    <button ion-button outline
+            (click)="prevPage()"
+            [class.disabled]="result && !result.previous">
+      Prev
+    </button>
+
+    <button class="next"
+            ion-button outline
+            (click)="nextPage()"
+            [class.disabled]="result && !result.next">
+      Next
+    </button>
+  </div>
 </ion-content>
