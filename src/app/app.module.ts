@@ -3,7 +3,7 @@ import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
 import { MyApp } from './app.component';
 import { SearchPage } from '../pages/search/search';
 import { ItemDetailsPage } from '../pages/item-details/item-details';
-import { ResultPage } from '../pages/result/result';
+import { ResultPage } from '../pages/results/results';
 
 import {DockerService} from '../services/docker.service';
 import { HttpModule } from '@angular/http';

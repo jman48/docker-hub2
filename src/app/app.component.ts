@@ -5,7 +5,7 @@ import { Platform, MenuController, Nav } from 'ionic-angular';
 import { StatusBar, Splashscreen } from 'ionic-native';
 
 import { SearchPage } from '../pages/search/search';
-import { ResultPage } from '../pages/result/result';
+import { ResultPage } from '../pages/results/results';
 
 
 @Component({

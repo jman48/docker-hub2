@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 
-import { ResultPage } from '../result/result';
+import { ResultPage } from '../results/results';
 import {NavController} from "ionic-angular";
 
 @Component({

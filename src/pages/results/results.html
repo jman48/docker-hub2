@@ -3,15 +3,19 @@
     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
-    <ion-title>Results for "{{searchTerm}}"</ion-title>
+    <ion-title>Page {{page}}</ion-title>
   </ion-navbar>
 </ion-header>
 
 <ion-content>
   <ion-list>
-    <div ion-item *ngFor="let item of items">
-      {{item.repo_name}}
-    </div>
+    <ion-list-header>
+      Search results for "{{searchTerm}}"
+    </ion-list-header>
+
+    <ion-item *ngFor="let item of items">
+      <ion-label>{{item.repo_name}}</ion-label>
+    </ion-item>
   </ion-list>
 
   <div class="navigation">

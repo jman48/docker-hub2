@@ -6,7 +6,7 @@ import { DockerService } from "../../services/docker.service";
 
 @Component({
   selector: 'page-list',
-  templateUrl: 'result.html'
+  templateUrl: 'results.html'
 })
 export class ResultPage {
   result: any;
@@ -38,7 +38,7 @@ export class ResultPage {
     if (this.result.next) {
       this.navCtrl.push(ResultPage, {
         searchTerm: this.searchTerm,
-        page: (++this.page)
+        page: (this.page + 1)
       }, {
         animate: false
       });
