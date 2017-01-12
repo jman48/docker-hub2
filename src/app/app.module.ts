@@ -5,6 +5,9 @@ import { HelloIonicPage } from '../pages/search/search';
 import { ItemDetailsPage } from '../pages/item-details/item-details';
 import { ListPage } from '../pages/result/result';
 
+import {DockerService} from '../services/docker.service';
+import { HttpModule } from '@angular/http';
+
 @NgModule({
   declarations: [
     MyApp,
@@ -13,6 +16,7 @@ import { ListPage } from '../pages/result/result';
     ListPage
   ],
   imports: [
+    HttpModule,
     IonicModule.forRoot(MyApp)
   ],
   bootstrap: [IonicApp],
@@ -22,6 +26,6 @@ import { ListPage } from '../pages/result/result';
     ItemDetailsPage,
     ListPage
   ],
-  providers: [{provide: ErrorHandler, useClass: IonicErrorHandler}]
+  providers: [{provide: ErrorHandler, useClass: IonicErrorHandler}, DockerService]
 })
 export class AppModule {}
