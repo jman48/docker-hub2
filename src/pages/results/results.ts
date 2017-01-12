@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 
-import {NavParams, NavController} from 'ionic-angular';
+import {NavParams, NavController, LoadingController} from 'ionic-angular';
 import { DockerService } from "../../services/docker.service";
 
 
@@ -13,11 +13,17 @@ export class ResultPage {
   searchTerm: string;
   page: number;
   items: Array<any>;
+  loading: any;
 
 
-  constructor(private navCtrl: NavController, public navParams: NavParams, private dockerService: DockerService) {
+  constructor(private navCtrl: NavController, public navParams: NavParams, private dockerService: DockerService, public loadingCtrl: LoadingController) {
     this.searchTerm = navParams.get('searchTerm');
     this.page = navParams.get('page');
+    this.loading = this.loadingCtrl.create({
+      content: 'Loading...'
+    });
+
+    this.loading.present();
   }
 
   /**
@@ -28,7 +34,9 @@ export class ResultPage {
       .then(searchResult => {
         this.result = searchResult;
         this.items = searchResult.results;
-      });
+        this.loading.dismiss();
+      })
+      .catch(() => this.loading.dismiss());
   }
 
   /**
