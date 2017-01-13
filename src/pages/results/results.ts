@@ -21,14 +21,14 @@ export class ResultPage {
   constructor(private navCtrl: NavController, public navParams: NavParams, private dockerService: DockerService, public loadingCtrl: LoadingService) {
     this.searchTerm = navParams.get('searchTerm');
     this.page = navParams.get('page');
-
-    this.loadingCtrl.startLoading();
   }
 
   /**
    * Get all search results when we get initialised
    */
   ngOnInit() {
+    this.loadingCtrl.startLoading();
+
     this.dockerService.search(this.searchTerm, this.page)
       .then(searchResult => {
         this.result = searchResult;

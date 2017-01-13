@@ -4,24 +4,24 @@ import {LoadingController} from "ionic-angular";
 @Injectable()
 export class LoadingService {
   private loading: boolean = false;
-  private loadingCtrl: any;
+  private loadingDialog: any;
 
-  constructor(loadingCtrl: LoadingController) {
-    this.loadingCtrl = loadingCtrl.create({
-      content: 'Loading...'
-    });
-  };
+  constructor(private loadingCtrl: LoadingController) { };
 
   startLoading() {
     if (!this.loading) {
-      this.loadingCtrl.present();
+      this.loadingDialog = this.loadingCtrl.create({
+        content: 'Loading...'
+      });
+
+      this.loadingDialog.present();
       this.loading = true;
     }
   }
 
   stopLoading() {
     if (this.loading) {
-      this.loadingCtrl.dismiss();
+      this.loadingDialog.dismiss();
       this.loading = false;
     }
   }
