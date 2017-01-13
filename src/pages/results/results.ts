@@ -16,6 +16,7 @@ export class ResultPage {
   searchTerm: string;
   page: number;
   items: Array<any>;
+  loaded: boolean = false;
 
 
   constructor(private navCtrl: NavController, public navParams: NavParams, private dockerService: DockerService, public loadingCtrl: LoadingService) {
@@ -34,6 +35,7 @@ export class ResultPage {
         this.result = searchResult;
         this.items = searchResult.results;
         this.loadingCtrl.stopLoading();
+        this.loaded = true;
       })
       .catch(() => this.loadingCtrl.stopLoading());
   }

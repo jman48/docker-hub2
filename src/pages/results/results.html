@@ -8,28 +8,31 @@
 </ion-header>
 
 <ion-content>
-  <ion-list>
-    <ion-list-header>
-      <div class="header">
-        Showing {{(page - 1) * 10}} - {{page * 10}} of {{(result && result.count) || '0'}} results for "{{searchTerm}}"
-      </div>
-    </ion-list-header>
+  <div *ngIf="loaded">
+    <ion-list>
+      <ion-list-header>
+        <div class="header">
+          Showing {{(page - 1) * 10}} - {{page * 10}} of {{(result && result.count) || '0'}} results for
+          "{{searchTerm}}"
+        </div>
+      </ion-list-header>
 
-    <result [item]="item" *ngFor="let item of items" (click)="loadRepo(item)"></result>
-  </ion-list>
+      <result [item]="item" *ngFor="let item of items" (click)="loadRepo(item)"></result>
+    </ion-list>
 
-  <div class="navigation">
-    <button ion-button outline
-            (click)="prevPage()"
-            [class.disabled]="result && !result.previous">
-      Prev
-    </button>
+    <div class="navigation">
+      <button ion-button outline
+              (click)="prevPage()"
+              [class.disabled]="result && !result.previous">
+        Prev
+      </button>
 
-    <button class="next"
-            ion-button outline
-            (click)="nextPage()"
-            [class.disabled]="result && !result.next">
-      Next
-    </button>
+      <button class="next"
+              ion-button outline
+              (click)="nextPage()"
+              [class.disabled]="result && !result.next">
+        Next
+      </button>
+    </div>
   </div>
 </ion-content>
