@@ -6,6 +6,7 @@ import 'rxjs/add/operator/toPromise';
 @Injectable()
 export class DockerService {
   private host: string = 'https://hub.docker.com/v2/';
+  private recent: Array<string> = [];
   public static readonly ORDER: any = {ALL: '-all', STARS: '-star_count', DOWNLOADS: '-pull_count'};
 
   constructor(private http: Http) {};
@@ -19,6 +20,8 @@ export class DockerService {
    */
   search(searchTerm, page = 1, order='ALL'): Promise<any> {
     let searchUrl = `${this.host}search/repositories/?page=${page}&query=${searchTerm}&ordering=${order}`;
+
+    this.addToRecent(searchTerm);
 
     return this.http.get(searchUrl)
       .toPromise()
@@ -45,5 +48,18 @@ export class DockerService {
     return this.http.get(repoUrl)
       .toPromise()
       .then((response) => response.json());
+  }
+
+  getRecentSearches(): Array<string> {
+    return this.recent;
+  }
+
+  private addToRecent(search: string) {
+    if (this.recent.length === 10) {
+      this.recent.unshift(search);
+      this.recent.pop();
+    } else {
+      this.recent.push(search);
+    }
   }
 }

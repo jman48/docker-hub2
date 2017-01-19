@@ -22,4 +22,11 @@
     </ion-item>
     <button ion-button block (click)="search()">Search</button>
   </div>
+
+  <div class="recent_searches">
+    <ion-list>
+      <ion-list-header>Recent searches</ion-list-header>
+      <ion-item *ngFor="let search of recentSearches">{{search}}</ion-item>
+    </ion-list>
+  </div>
 </ion-content>

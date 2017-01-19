@@ -10,8 +10,11 @@ import { DockerService } from '../../services/docker.service';
 })
 export class SearchPage {
   searchTerm: string;
+  recentSearches: Array<string> = [];
 
-  constructor(private navCtrl: NavController) { }
+  constructor(private navCtrl: NavController, private dockerService: DockerService) {
+    this.recentSearches = this.dockerService.getRecentSearches();
+  }
 
   search(): void {
     this.navCtrl.push(ResultPage, {
