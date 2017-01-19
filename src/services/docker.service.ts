@@ -2,6 +2,7 @@ import {Injectable} from '@angular/core';
 import {Http} from '@angular/http';
 
 import 'rxjs/add/operator/toPromise';
+import { Storage } from "@ionic/storage";
 
 @Injectable()
 export class DockerService {
@@ -9,7 +10,9 @@ export class DockerService {
   private recent: Array<string> = [];
   public static readonly ORDER: any = {ALL: '-all', STARS: '-star_count', DOWNLOADS: '-pull_count'};
 
-  constructor(private http: Http) {};
+  constructor(private http: Http, private storage: Storage) {
+    this.storage.set('recent', []);
+  };
 
   /**
    * Search docker hub for the supplied searchTerm.
@@ -21,7 +24,9 @@ export class DockerService {
   search(searchTerm, page = 1, order='ALL'): Promise<any> {
     let searchUrl = `${this.host}search/repositories/?page=${page}&query=${searchTerm}&ordering=${order}`;
 
-    this.addToRecent(searchTerm);
+    if (page === 1) {
+      this.addToRecent(searchTerm);
+    }
 
     return this.http.get(searchUrl)
       .toPromise()
@@ -50,16 +55,23 @@ export class DockerService {
       .then((response) => response.json());
   }
 
-  getRecentSearches(): Array<string> {
-    return this.recent;
+  getRecentSearches(callback: (result: any) => {}): void {
+    this.storage.get('recent').then(recent => callback(recent));
   }
 
   private addToRecent(search: string) {
-    if (this.recent.length === 10) {
-      this.recent.unshift(search);
-      this.recent.pop();
-    } else {
-      this.recent.push(search);
-    }
+    this.storage.get('recent').then(recent => {
+
+      if (recent.indexOf(search) < 0) {
+        recent.unshift(search);
+
+        //Limit recent searches to 10
+        if (recent.length > 10) {
+          recent.pop();
+        }
+
+        this.storage.set('recent', recent);
+      }
+    });
   }
 }

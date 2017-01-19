@@ -1,5 +1,7 @@
 import { NgModule, ErrorHandler } from '@angular/core';
 import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
+import { Storage } from '@ionic/storage';
+
 import { DockerService } from '../services/docker.service';
 import { LoadingService } from '../services/loading.service';
 import { HttpModule } from '@angular/http';
@@ -36,7 +38,8 @@ import { MarkdownParser } from '../pipes/markdown.pipe';
   providers: [
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     DockerService,
-    LoadingService
+    LoadingService,
+    Storage
   ]
 })
 export class AppModule {

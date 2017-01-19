@@ -12,8 +12,10 @@ export class SearchPage {
   searchTerm: string;
   recentSearches: Array<string> = [];
 
-  constructor(private navCtrl: NavController, private dockerService: DockerService) {
-    this.recentSearches = this.dockerService.getRecentSearches();
+  constructor(private navCtrl: NavController, private dockerService: DockerService) { }
+
+  ionViewWillEnter() {
+    this.dockerService.getRecentSearches((recent) => this.recentSearches = recent);
   }
 
   search(): void {
