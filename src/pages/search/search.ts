@@ -18,6 +18,12 @@ export class SearchPage {
     this.dockerService.getRecentSearches((recent) => this.recentSearches = recent);
   }
 
+  searchRecent(recentSearchTerm: string) {
+    this.searchTerm = recentSearchTerm;
+
+    this.search();
+  }
+
   search(): void {
     this.navCtrl.push(ResultPage, {
       page: 1,
