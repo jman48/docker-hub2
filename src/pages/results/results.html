@@ -17,6 +17,15 @@
         </div>
       </ion-list-header>
 
+      <ion-item>
+        <ion-label>Order</ion-label>
+        <ion-select [(ngModel)]="selectedOrder" (ionChange)="changeOrder(selectedOrder)">
+          <ion-option value="{{ORDERTYPES.ALL}}">ALL</ion-option>
+          <ion-option value="{{ORDERTYPES.STARS}}">STARS</ion-option>
+          <ion-option value="{{ORDERTYPES.DOWNLOADS}}">DOWNLOADS</ion-option>
+        </ion-select>
+      </ion-item>
+
       <result [item]="item" *ngFor="let item of items" (click)="loadRepo(item)"></result>
     </ion-list>
 

@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 
 import { ResultPage } from '../results/results';
 import {NavController} from "ionic-angular";
+import { DockerService } from '../../services/docker.service';
 
 @Component({
   selector: 'page-hello-ionic',
@@ -15,7 +16,8 @@ export class SearchPage {
   search(): void {
     this.navCtrl.push(ResultPage, {
       page: 1,
-      searchTerm: this.searchTerm
+      searchTerm: this.searchTerm,
+      order: DockerService.ORDER.ALL
     });
   }
 

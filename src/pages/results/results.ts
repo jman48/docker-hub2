@@ -17,11 +17,14 @@ export class ResultPage {
   page: number;
   items: Array<any>;
   loaded: boolean = false;
+  ORDERTYPES: any; //All the ordering types we can use
+  selectedOrder: string;
 
 
   constructor(private navCtrl: NavController, public navParams: NavParams, private dockerService: DockerService, public loadingCtrl: LoadingService) {
     this.searchTerm = navParams.get('searchTerm');
     this.page = navParams.get('page');
+    this.selectedOrder = this.navParams.get('order');
   }
 
   /**
@@ -29,8 +32,9 @@ export class ResultPage {
    */
   ngOnInit() {
     this.loadingCtrl.startLoading();
+    this.ORDERTYPES = DockerService.ORDER;
 
-    this.dockerService.search(this.searchTerm, this.page)
+    this.dockerService.search(this.searchTerm, this.page, this.selectedOrder)
       .then(searchResult => {
         this.result = searchResult;
         this.items = searchResult.results;
@@ -47,7 +51,8 @@ export class ResultPage {
     if (this.result.next) {
       this.navCtrl.push(ResultPage, {
         searchTerm: this.searchTerm,
-        page: (this.page + 1)
+        page: (this.page + 1),
+        order: this.selectedOrder
       }, {
         animate: false
       });
@@ -65,10 +70,28 @@ export class ResultPage {
     }
   }
 
+  /**
+   * Load a single repository
+   *
+   * @param repo - The repo object to load
+   */
   loadRepo(repo): void {
     this.navCtrl.push(RepoPage, {
       name: repo.repo_name,
       offical: repo.is_official
+    })
+  }
+
+  /**
+   * Change the selectedOrder of the results
+   *
+   * @param order - The new selectedOrder
+   */
+  changeOrder(order): void {
+    this.navCtrl.push(ResultPage, {
+      searchTerm: this.searchTerm,
+      page: 1,
+      order: order
     })
   }
 }
