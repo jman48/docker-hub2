@@ -7,7 +7,6 @@ import { Storage } from "@ionic/storage";
 @Injectable()
 export class DockerService {
   private host: string = 'https://hub.docker.com/v2/';
-  private recent: Array<string> = [];
   public static readonly ORDER: any = {ALL: '-all', STARS: '-star_count', DOWNLOADS: '-pull_count'};
 
   constructor(private http: Http, private storage: Storage) {
