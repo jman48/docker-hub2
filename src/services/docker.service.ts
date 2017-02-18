@@ -10,8 +10,12 @@ export class DockerService {
   public static readonly ORDER: any = {ALL: '-all', STARS: '-star_count', DOWNLOADS: '-pull_count'};
 
   constructor(private http: Http, private storage: Storage) {
-    this.storage.set('recent', []);
-  };
+    this.storage.get('recent').then(recent => {
+      if (!recent) {
+        this.storage.set('recent', []);
+      }
+    });
+  }
 
   /**
    * Search docker hub for the supplied searchTerm.
