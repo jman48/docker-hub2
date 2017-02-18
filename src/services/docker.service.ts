@@ -47,11 +47,11 @@ export class DockerService {
   loadRepo(name, official) {
     let repoUrl = `${this.host}repositories/`;
 
-    if (official !== 'false') {
+    if (official == 'true' || official === true) {
       repoUrl += 'library/';
     }
 
-    repoUrl += `${name}`;
+    repoUrl += `${name}/`;
 
     return this.http.get(repoUrl)
       .toPromise()
